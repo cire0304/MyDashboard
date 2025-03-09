@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DashBoard.Services;
+using DashBoard.Stores;
 using FontAwesome.Sharp;
 
 namespace DashBoard.ViewModels
@@ -8,6 +10,7 @@ namespace DashBoard.ViewModels
     [ObservableObject]
     public partial class MainViewModel
     {
+        private readonly MainNavigationStore _mainNigationStore;
         [ObservableProperty]
         private ViewModelBase? _currentChildViewModel;
         [ObservableProperty]
@@ -15,13 +18,16 @@ namespace DashBoard.ViewModels
         [ObservableProperty]
         private IconChar? _icon;
 
-
-        public MainViewModel()
+        private void CurrentViewModelChanged()
         {
-            LoadDate();
+            CurrentChildViewModel = _mainNigationStore.CurrentViewModel as ViewModelBase;
         }
-
-
+        public MainViewModel(MainNavigationStore mainNigationStore, INavigationService navigationService)
+        {
+            _mainNigationStore = mainNigationStore;
+            _mainNigationStore.CurrentViewModelChanged += CurrentViewModelChanged;
+            navigationService.Navigate(NaviType.HomeView);
+        }
 
         [RelayCommand]
         public void ShowHomeViewCommand()
@@ -39,10 +45,5 @@ namespace DashBoard.ViewModels
             Icon = IconChar.UserGroup;
         }
 
-        private void LoadDate()
-        {
-         
-            
-        }
     }
 }

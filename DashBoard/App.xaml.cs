@@ -1,4 +1,7 @@
 ﻿using System.Windows;
+using DashBoard.Controls;
+using DashBoard.Services;
+using DashBoard.Stores;
 using DashBoard.ViewModels;
 using DashBoard.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,14 +31,27 @@ namespace DashBoard
         {
             var services = new ServiceCollection();
             // Store
+            services.AddSingleton<MainNavigationStore>();
 
             // Services
+            services.AddSingleton<INavigationService, NavigationService>();
 
             // ViewModels
+            services.AddSingleton<NavigationViewModel>();
             services.AddSingleton<MainViewModel>();
+            services.AddSingleton<HomeViewModel>();
+            services.AddSingleton<CustomerViewModel>();
+
+            // Controls
+            services.AddSingleton<CustomerView>();
+            services.AddSingleton<HomeView>();
+            services.AddSingleton<NavigationControl>();
 
             // Views
-            services.AddSingleton<MainView>();
+            services.AddSingleton(s => new MainView()
+            {
+                DataContext = s.GetRequiredService<MainViewModel>()
+            });
 
             return services.BuildServiceProvider();
         }

@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DashBoard.ViewModels
+namespace DashBoard.Services
 {
-    public class CustomerViewModel : ViewModelBase
+    public interface INavigationService
     {
-
-
-
+        void Navigate(NaviType naviType);
     }
 }
