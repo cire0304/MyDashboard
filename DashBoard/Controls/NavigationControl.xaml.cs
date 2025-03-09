@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
-using CommunityToolkit.Mvvm.Input;
+using DashBoard.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DashBoard.Controls
 {
@@ -8,6 +9,7 @@ namespace DashBoard.Controls
         public NavigationControl()
         {
             InitializeComponent();
+            DataContext = App.Current.Services.GetRequiredService<NavigationViewModel>();
         }
     }
 }

@@ -1,8 +1,10 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using DashBoard.Services;
 
 namespace DashBoard.ViewModels
 {
+    //[ObservableObject]
     public partial class NavigationViewModel
     {
         private readonly INavigationService _navigationService;
@@ -13,13 +15,13 @@ namespace DashBoard.ViewModels
         }
 
         [RelayCommand]
-        public void ToHomeCommand()
+        public void ToHome()
         {
             _navigationService.Navigate(NaviType.HomeView);
         }
 
         [RelayCommand]
-        public void ToCustomerCommand()
+        public void ToCustomer()
         {
             _navigationService.Navigate(NaviType.CustomerView);
         }
