@@ -19,11 +19,11 @@
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
-            <local:HomeView />
+            <ctrl:HomeView />
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModels:CustomerViewModel}">
-            <local:CustomerView />
+            <ctrl:CustomerView />
         </DataTemplate>
     </Window.Resources>
 

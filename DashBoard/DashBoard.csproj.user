@@ -10,10 +10,10 @@
     <Compile Update="Controls\NavigationControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\CustomerView.xaml.cs">
+    <Compile Update="Controls\CustomerControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\HomeView.xaml.cs">
+    <Compile Update="Controls\HomeControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\MainView.xaml.cs">
@@ -30,10 +30,10 @@
     <Page Update="Styles\UIColors.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\CustomerView.xaml">
+    <Page Update="Controls\CustomerControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\HomeView.xaml">
+    <Page Update="Controls\HomeControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainView.xaml">
