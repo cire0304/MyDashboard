@@ -48,7 +48,7 @@
             </Grid.ColumnDefinitions>
             <!--  Navigation Menu  -->
 
-            <ctrl:NavigationControl Grid.Column="0" />
+            <ctrl:NavigationControl Grid.Column="0" DataContext="{Binding NavigationViewModel}" />
 
             <!--  Main Section  -->
             <Border

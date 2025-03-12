@@ -7,10 +7,12 @@ using FontAwesome.Sharp;
 
 namespace DashBoard.ViewModels
 {
-    [ObservableObject]
-    public partial class MainViewModel
+    public partial class MainViewModel : ObservableObject
     {
+        
         private readonly MainNavigationStore _mainNigationStore;
+        [ObservableProperty]
+        private NavigationViewModel? _navigationViewModel;
         [ObservableProperty]
         private ViewModelBase? _currentChildViewModel;
         [ObservableProperty]
@@ -22,10 +24,13 @@ namespace DashBoard.ViewModels
         {
             CurrentChildViewModel = _mainNigationStore.CurrentViewModel as ViewModelBase;
         }
-        public MainViewModel(MainNavigationStore mainNigationStore, INavigationService navigationService)
+        public MainViewModel(MainNavigationStore mainNigationStore, INavigationService navigationService, NavigationViewModel navigationViewModel)
         {
             _mainNigationStore = mainNigationStore;
+            _navigationViewModel = navigationViewModel;
+
             _mainNigationStore.CurrentViewModelChanged += CurrentViewModelChanged;
+
             navigationService.Navigate(NaviType.HomeView);
         }
 

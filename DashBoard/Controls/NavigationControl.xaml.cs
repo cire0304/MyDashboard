@@ -9,7 +9,6 @@ namespace DashBoard.Controls
         public NavigationControl()
         {
             InitializeComponent();
-            DataContext = App.Current.Services.GetRequiredService<NavigationViewModel>();
         }
     }
 }

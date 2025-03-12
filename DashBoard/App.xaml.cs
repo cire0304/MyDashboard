@@ -50,7 +50,7 @@ namespace DashBoard
             // Views
             services.AddSingleton(s => new MainView()
             {
-                DataContext = s.GetRequiredService<MainViewModel>()
+                DataContext = s.GetRequiredService<MainViewModel>()               
             });
 
             return services.BuildServiceProvider();
