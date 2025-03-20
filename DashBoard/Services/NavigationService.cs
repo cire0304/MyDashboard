@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using DashBoard.Attributes;
+using DashBoard.Controls;
 using DashBoard.Stores;
 using DashBoard.ViewModels;
 
@@ -16,12 +18,17 @@ namespace DashBoard.Services
         {
             this._mainNavigationStore = mainNavigationStore;
         }
+
+        [ExceptionHandler]
         public void Navigate(NaviType naviType)
         {
             switch(naviType)
             {
                 case NaviType.HomeView:
                     _currentViewModel = (INotifyPropertyChanged?)App.Current.Services.GetService(typeof(HomeViewModel));
+                    break;
+                case NaviType.ProgramLauncherView:
+                    _currentViewModel = (INotifyPropertyChanged?)App.Current.Services.GetService(typeof(IntroLauncherViewModel));
                     break;
                 case NaviType.CustomerView:
                     _currentViewModel = (INotifyPropertyChanged?)App.Current.Services.GetService(typeof(CustomerViewModel));

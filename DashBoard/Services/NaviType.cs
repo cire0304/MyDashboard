@@ -3,6 +3,7 @@
     public enum NaviType
     {
         HomeView,
+        ProgramLauncherView,
         CustomerView
     }
 }

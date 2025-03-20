@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using DashBoard.Services;
 
 namespace DashBoard.ViewModels
@@ -24,6 +23,12 @@ namespace DashBoard.ViewModels
         public void ToCustomer()
         {
             _navigationService.Navigate(NaviType.CustomerView);
+        }
+
+        [RelayCommand]
+        public void ToProgramLauncher()
+        {
+            _navigationService.Navigate(NaviType.ProgramLauncherView);
         }
     }
 }

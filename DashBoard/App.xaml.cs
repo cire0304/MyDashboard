@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using DashBoard.Controls;
 using DashBoard.Services;
+using DashBoard.Services.IntroLauncher;
 using DashBoard.Stores;
 using DashBoard.ViewModels;
 using DashBoard.Views;
@@ -35,16 +36,19 @@ namespace DashBoard
 
             // Services
             services.AddSingleton<INavigationService, NavigationService>();
+            services.AddSingleton<ProcessLaunceService>();
 
             // ViewModels
             services.AddSingleton<NavigationViewModel>();
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<HomeViewModel>();
             services.AddSingleton<CustomerViewModel>();
+            services.AddSingleton<IntroLauncherViewModel>();
 
             // Controls
             services.AddSingleton<CustomerView>();
-            services.AddSingleton<HomeView>();
+            services.AddSingleton<HomeControl>();
+            services.AddSingleton<IntroLauncherControl>();
             services.AddSingleton<NavigationControl>();
 
             // Views
