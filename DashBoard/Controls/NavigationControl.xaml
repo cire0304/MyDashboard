@@ -47,6 +47,16 @@
             </RadioButton>
 
             <RadioButton
+                Command="{Binding ToProgramLauncherCommand}"
+                Style="{StaticResource menuButton}"
+                Tag="{StaticResource color3}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:IconImage Icon="Th" Style="{StaticResource menuButtonIcon}" />
+                    <TextBlock Style="{StaticResource menuButtonText}" Text="Intro" />
+                </StackPanel>
+            </RadioButton>
+
+            <RadioButton
                 Command="{Binding ToCustomerCommand}"
                 Style="{StaticResource menuButton}"
                 Tag="{StaticResource color2}">
