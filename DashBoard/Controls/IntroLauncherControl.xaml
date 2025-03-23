@@ -2,6 +2,7 @@
     x:Class="DashBoard.Controls.IntroLauncherControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converts="clr-namespace:DashBoard.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:DashBoard.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,7 +10,12 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <converts:ExeIconConverter x:Key="ExeIconConverter" />
+    </UserControl.Resources>
+
     <Grid>
+
         <!--  ItemsControl을 WrapPanel로 배치하여 아이콘을 가로/세로로 나열  -->
         <ItemsControl ItemsSource="{Binding Programs}">
             <ItemsControl.ItemsPanel>
@@ -27,10 +33,10 @@
                         CommandParameter="{Binding}">
                         <StackPanel>
                             <!--  아이콘 이미지  -->
-                            <!--<Image
-                                    Width="64"
-                                    Height="64"
-                                    Source="{Binding IconPath}" />-->
+                            <Image
+                                Width="64"
+                                Height="64"
+                                Source="{Binding Path, Converter={StaticResource ExeIconConverter}}" />
                             <!--  앱 이름  -->
                             <TextBlock HorizontalAlignment="Center" Text="{Binding Name}" />
                         </StackPanel>
