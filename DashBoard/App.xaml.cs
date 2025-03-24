@@ -1,10 +1,12 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using DashBoard.Controls;
 using DashBoard.Services;
 using DashBoard.Services.IntroLauncher;
 using DashBoard.Stores;
 using DashBoard.ViewModels;
 using DashBoard.Views;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DashBoard
@@ -31,12 +33,18 @@ namespace DashBoard
         private IServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
+
+            services.AddSingleton<IConfiguration>(s => new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appSettings.json")
+            .Build());
+
             // Store
             services.AddSingleton<MainNavigationStore>();
 
             // Services
             services.AddSingleton<INavigationService, NavigationService>();
-            services.AddSingleton<ProcessLaunceService>();
+            services.AddSingleton<ProcessLauncherService>();
 
             // ViewModels
             services.AddSingleton<NavigationViewModel>();

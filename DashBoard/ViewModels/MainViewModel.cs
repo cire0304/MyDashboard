@@ -31,7 +31,7 @@ namespace DashBoard.ViewModels
 
             _mainNigationStore.CurrentViewModelChanged += CurrentViewModelChanged;
 
-            navigationService.Navigate(NaviType.HomeView);
+            navigationService.Navigate(NaviType.ProgramLauncherView);
         }
 
         [RelayCommand]

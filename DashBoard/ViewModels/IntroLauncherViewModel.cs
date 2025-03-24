@@ -9,18 +9,16 @@ namespace DashBoard.ViewModels
     //[ObservableObject]
     public partial class IntroLauncherViewModel : ViewModelBase
     {
-        private readonly ProcessLaunceService _processService;
+        private readonly ProcessLauncherService _processService;
         
         public ObservableCollection<ProgramItem> Programs { get; } = new();
 
-        public IntroLauncherViewModel(ProcessLaunceService processService)
+        public IntroLauncherViewModel(ProcessLauncherService processService)
         {
             _processService = processService;
 
-            // TODO: Change how to initialize Programs
-            Programs.Add(new ProgramItem("메모장", @"C:\Windows\notepad.exe"));
-            Programs.Add(new ProgramItem("계산기", @"C:\Windows\System32\calc.exe"));
-            Programs.Add(new ProgramItem("명령 프롬프트", @"C:\Windows\System32\cmd.exe"));
+            _processService.getProgramItemList()?.ForEach(Programs.Add);
+
         }
 
         [RelayCommand]
