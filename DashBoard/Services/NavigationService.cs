@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel;
-using DashBoard.Attributes;
-using DashBoard.Controls;
 using DashBoard.Stores;
 using DashBoard.ViewModels;
 
@@ -19,7 +17,6 @@ namespace DashBoard.Services
             this._mainNavigationStore = mainNavigationStore;
         }
 
-        [ExceptionHandler]
         public void Navigate(NaviType naviType)
         {
             switch(naviType)

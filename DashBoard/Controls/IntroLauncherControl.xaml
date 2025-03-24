@@ -13,11 +13,34 @@
     <UserControl.Resources>
         <converts:ExeIconConverter x:Key="ExeIconConverter" />
     </UserControl.Resources>
-
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel
+            Grid.Row="0"
+            Width="150"
+            Margin="10,10"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center">
+
+            <local:TextBoxControl
+                x:Name="id"
+                Margin="0,0,0,5"
+                Background="White"
+                WaterMarkText="이메일을 입력하세요." />
+
+            <local:TextBoxControl
+                x:Name="password"
+                Background="White"
+                WaterMarkText="비밀번호를 입력하세요." />
+
+        </StackPanel>
 
         <!--  ItemsControl을 WrapPanel로 배치하여 아이콘을 가로/세로로 나열  -->
-        <ItemsControl ItemsSource="{Binding Programs}">
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding Programs}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
