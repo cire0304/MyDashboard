@@ -14,7 +14,7 @@ namespace DashBoard.ViewModels
         [ObservableProperty]
         private NavigationViewModel? _navigationViewModel;
         [ObservableProperty]
-        private ViewModelBase? _currentChildViewModel;
+        private IViewModelBase? _currentChildViewModel;
         [ObservableProperty]
         private string? _caption;
         [ObservableProperty]
@@ -22,7 +22,7 @@ namespace DashBoard.ViewModels
 
         private void CurrentViewModelChanged()
         {
-            CurrentChildViewModel = _mainNigationStore.CurrentViewModel as ViewModelBase;
+            CurrentChildViewModel = _mainNigationStore.CurrentViewModel as IViewModelBase;
         }
         public MainViewModel(MainNavigationStore mainNigationStore, INavigationService navigationService, NavigationViewModel navigationViewModel)
         {

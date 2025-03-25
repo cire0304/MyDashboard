@@ -27,14 +27,14 @@
             VerticalAlignment="Center">
 
             <local:TextBoxControl
-                x:Name="id"
                 Margin="0,0,0,5"
                 Background="White"
+                Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"
                 WaterMarkText="이메일을 입력하세요." />
 
             <local:TextBoxControl
-                x:Name="password"
                 Background="White"
+                Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
                 WaterMarkText="비밀번호를 입력하세요." />
 
         </StackPanel>

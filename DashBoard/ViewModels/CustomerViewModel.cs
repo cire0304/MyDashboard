@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DashBoard.ViewModels
 {
-    public class CustomerViewModel : ViewModelBase
+    public class CustomerViewModel : IViewModelBase
     {
 
 

@@ -5,12 +5,17 @@ using DashBoard.Models.IntroLauncher;
 using DashBoard.Services.IntroLauncher;
 
 namespace DashBoard.ViewModels
-{
-    //[ObservableObject]
-    public partial class IntroLauncherViewModel : ViewModelBase
+{    
+    public partial class IntroLauncherViewModel : ObservableObject, IViewModelBase
     {
         private readonly ProcessLauncherService _processService;
-        
+
+        [ObservableProperty]
+        private string _id = "";
+        [ObservableProperty]
+        private string _password = "";
+
+
         public ObservableCollection<ProgramItem> Programs { get; } = new();
 
         public IntroLauncherViewModel(ProcessLauncherService processService)
@@ -22,11 +27,12 @@ namespace DashBoard.ViewModels
         }
 
         [RelayCommand]
-        public void StartProgram(ProgramItem item)
+        public void StartProgram(ProgramItem program)
         {
-            if (item.Path == null) return;
+            if (program.Path == null) return;
 
-            _processService.StartProgram(item.Path);
+            string args = $"--id \"{Id}\" --pw \"{Password}\"";
+            _processService.StartProgram(program);
         }
 
     }

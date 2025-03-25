@@ -15,13 +15,14 @@ namespace DashBoard.Services.IntroLauncher
             _configuration = configuration;
         }
 
-        public void StartProgram(string programPath)
+        public void StartProgram(ProgramItem programPath, string arguments = "")
         {
-            if (!File.Exists(programPath)) return;
+            if (!File.Exists(programPath.Path)) return;
 
             Process.Start(new ProcessStartInfo
             {
-                FileName = programPath,
+                FileName = programPath.Path,
+                Arguments = arguments,
                 UseShellExecute = true
             });
         }
