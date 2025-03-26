@@ -31,8 +31,7 @@ namespace DashBoard.ViewModels
         {
             if (program.Path == null) return;
 
-            string args = $"--id \"{Id}\" --pw \"{Password}\"";
-            _processService.StartProgram(program);
+            _processService.StartProgram(program, Id, Password);
         }
 
     }

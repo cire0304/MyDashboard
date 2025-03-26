@@ -7,7 +7,7 @@ namespace DashBoard.Services
     class NavigationService : INavigationService
     {
         private readonly MainNavigationStore _mainNavigationStore;
-        private INotifyPropertyChanged? _currentViewModel
+        private IViewModelBase? _currentViewModel
         {
             set => _mainNavigationStore.CurrentViewModel = value;
         }
@@ -22,13 +22,13 @@ namespace DashBoard.Services
             switch(naviType)
             {
                 case NaviType.HomeView:
-                    _currentViewModel = (INotifyPropertyChanged?)App.Current.Services.GetService(typeof(HomeViewModel));
+                    _currentViewModel = (IViewModelBase?)App.Current.Services.GetService(typeof(HomeViewModel));
                     break;
                 case NaviType.ProgramLauncherView:
-                    _currentViewModel = (INotifyPropertyChanged?)App.Current.Services.GetService(typeof(IntroLauncherViewModel));
+                    _currentViewModel = (IViewModelBase?)App.Current.Services.GetService(typeof(IntroLauncherViewModel));
                     break;
                 case NaviType.CustomerView:
-                    _currentViewModel = (INotifyPropertyChanged?)App.Current.Services.GetService(typeof(CustomerViewModel));
+                    _currentViewModel = (IViewModelBase?)App.Current.Services.GetService(typeof(CustomerViewModel));
                     break;
             }            
         }
