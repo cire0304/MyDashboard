@@ -61,8 +61,8 @@
                 CornerRadius="0, 10, 10, 0">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
-                        <GradientStop Offset="0" Color="{StaticResource primaryBackColor1}" />
-                        <GradientStop Offset="1" Color="{StaticResource primaryBackColor2}" />
+                        <GradientStop Offset="0" Color="{StaticResource deepMidnightBlue1}" />
+                        <GradientStop Offset="1" Color="{StaticResource deepMidnightBlue2}" />
                     </LinearGradientBrush>
                 </Border.Background>
 

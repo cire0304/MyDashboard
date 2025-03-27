@@ -14,8 +14,8 @@
     <Border Grid.Column="0" CornerRadius="10, 0, 0, 10">
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
-                <GradientStop Offset="0" Color="{StaticResource secondaryBackColor1}" />
-                <GradientStop Offset="1" Color="{StaticResource secondaryBackColor2}" />
+                <GradientStop Offset="0" Color="{StaticResource twilightIndigoBackColor1}" />
+                <GradientStop Offset="1" Color="{StaticResource twilightIndigoBackColor2}" />
             </LinearGradientBrush>
         </Border.Background>
 

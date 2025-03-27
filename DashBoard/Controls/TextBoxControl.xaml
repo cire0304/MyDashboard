@@ -12,17 +12,26 @@
     <UserControl.Resources>
 
         <Style x:Key="BaseControl" TargetType="{x:Type FrameworkElement}">
-            <Setter Property="Control.FontSize" Value="{Binding FontSize, ElementName=root}" />
-            <Setter Property="Control.FontFamily" Value="{Binding FontFamily, ElementName=root}" />
+            <!--<Setter Property="Control.FontSize" Value="{Binding FontSize, ElementName=root}" />-->
+            <!--<Setter Property="Control.FontFamily" Value="{Binding FontFamily, ElementName=root}" />-->
+            <Setter Property="Control.FontFamily" Value="montserrat" />
+            <Setter Property="Control.FontWeight" Value="Medium" />
+            <Setter Property="Control.Foreground" Value="#5A1CEB" />
+
         </Style>
 
         <Style BasedOn="{StaticResource BaseControl}" TargetType="{x:Type TextBlock}">
             <Setter Property="Text" Value="{Binding WaterMarkText, ElementName=root}" />
             <Setter Property="Foreground" Value="{Binding WaterMarkTextColor, ElementName=root}" />
+
+            <Setter Property="FontFamily" Value="montserrat" />
+            <Setter Property="FontWeight" Value="Medium" />
+
             <Setter Property="Padding" Value="5,0,0,0" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Visibility" Value="Collapsed" />
+
             <Style.Triggers>
                 <MultiDataTrigger>
                     <MultiDataTrigger.Conditions>
@@ -39,9 +48,42 @@
         <Style BasedOn="{StaticResource BaseControl}" TargetType="{x:Type TextBox}">
             <Setter Property="Text" Value="{Binding Text, ElementName=root, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Padding" Value="5,0,0,0" />
-            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Background" Value="#F6F2FF" />
+            <Setter Property="BorderBrush" Value="#5A1CEB" />
+
+            <Setter Property="Foreground" Value="{Binding Foreground, ElementName=root}" />
+            <Setter Property="Foreground" Value="#5A1CEB" />
+
             <Setter Property="VerticalContentAlignment" Value="Center" />
 
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border
+                            x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="10">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="Width" Value="Auto">
+                                <Setter Property="MinWidth" Value="100" />
+                            </Trigger>
+                            <Trigger Property="Height" Value="Auto">
+                                <Setter Property="MinHeight" Value="20" />
+                            </Trigger>
+
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="gray" />
+                                <Setter TargetName="Bd" Property="BorderThickness" Value="2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
 
         </Style>
     </UserControl.Resources>

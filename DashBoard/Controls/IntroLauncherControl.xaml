@@ -12,63 +12,83 @@
 
     <UserControl.Resources>
         <converts:ExeIconConverter x:Key="ExeIconConverter" />
+
+        <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="10,0,10,0" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+
+
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
+            <RowDefinition Height="90" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <StackPanel
-            Grid.Row="0"
-            Width="150"
-            Margin="10,10"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center">
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
+                    <GradientStop Offset="0" Color="{StaticResource twilightShadowBackColor1}" />
+                    <GradientStop Offset="1" Color="{StaticResource twilightShadowBackColor2}" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <StackPanel
+                Grid.Row="0"
+                Width="150"
+                Margin="10,10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center">
 
-            <local:TextBoxControl
-                Margin="0,0,0,5"
-                Background="White"
-                Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"
-                WaterMarkText="이메일을 입력하세요." />
+                <local:TextBoxControl
+                    Margin="0,0,0,5"
+                    Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"
+                    WaterMarkText="이메일을 입력하세요." />
 
-            <local:TextBoxControl
-                Background="White"
-                Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
-                WaterMarkText="비밀번호를 입력하세요." />
-
-        </StackPanel>
+                <local:TextBoxControl Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" WaterMarkText="비밀번호를 입력하세요." />
+            </StackPanel>
+        </Border>
 
         <!--  ItemsControl을 WrapPanel로 배치하여 아이콘을 가로/세로로 나열  -->
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Programs}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
+        <Border Grid.Row="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
+                    <GradientStop Offset="0" Color="{StaticResource deepMidnightBackColor1}" />
+                    <GradientStop Offset="1" Color="{StaticResource deepMidnightBackColor2}" />
+                </LinearGradientBrush>
+            </Border.Background>
 
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <!--  각 앱을 나타내는 버튼  -->
-                    <Button
-                        Command="{Binding DataContext.StartProgramCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                        CommandParameter="{Binding}"
-                        Style="{StaticResource programButton}">
+            <ItemsControl ItemsSource="{Binding Programs}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
-                        <StackPanel Opacity="1">
-                            <!--  아이콘 이미지  -->
-                            <Image
-                                Width="64"
-                                Height="64"
-                                Opacity="1"
-                                Source="{Binding Path, Converter={StaticResource ExeIconConverter}}" />
-                            <!--  앱 이름  -->
-                            <TextBlock HorizontalAlignment="Center" Text="{Binding Name}" />
-                        </StackPanel>
-                    </Button>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!--  각 앱을 나타내는 버튼  -->
+                        <Button
+                            Command="{Binding DataContext.StartProgramCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                            CommandParameter="{Binding}"
+                            Style="{StaticResource programButton}">
+
+                            <StackPanel Opacity="1">
+                                <!--  아이콘 이미지  -->
+                                <Image
+                                    Width="64"
+                                    Height="64"
+                                    Opacity="1"
+                                    Source="{Binding Path, Converter={StaticResource ExeIconConverter}}" />
+                                <!--  앱 이름  -->
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding Name}" />
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
     </Grid>
 
 </UserControl>
