@@ -51,30 +51,9 @@
                 <DataTemplate>
                     <!--  각 앱을 나타내는 버튼  -->
                     <Button
-                        Margin="10"
                         Command="{Binding DataContext.StartProgramCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                         CommandParameter="{Binding}"
-                        OverridesDefaultStyle="True">
-                        <!--  버튼 템플릿 변경  -->
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border
-                                    x:Name="border"
-                                    Padding="5"
-                                    Background="#FFFFFF"
-                                    BorderThickness="0"
-                                    CornerRadius="10">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <!--  Mouse over back color  -->
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="border" Property="Background" Value="{StaticResource titleColor3}" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Button.Template>
-
+                        Style="{StaticResource programButton}">
 
                         <StackPanel Opacity="1">
                             <!--  아이콘 이미지  -->

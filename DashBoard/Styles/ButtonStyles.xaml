@@ -125,4 +125,29 @@
         <Setter Property="Height" Value="16" />
     </Style>
 
+    <!--  Program Button Style  -->
+    <Style x:Key="programButton" TargetType="Button">
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        x:Name="border"
+                        Padding="5"
+                        Background="#FFFFFF"
+                        BorderThickness="0"
+                        CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--  Mouse over back color  -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource titleColor3}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
