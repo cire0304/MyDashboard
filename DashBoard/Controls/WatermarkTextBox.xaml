@@ -1,0 +1,88 @@
+﻿<UserControl
+    x:Class="DashBoard.Controls.WatermarkTextBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DashBoard.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="root"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style x:Key="WatermarkTextBoxStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+
+        <Storyboard x:Key="txtGotFocus">
+            <ColorAnimation
+                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                To="#5A1CEB"
+                Duration="0:0:0.3" />
+        </Storyboard>
+
+        <Storyboard x:Key="txtLostFocus">
+            <ColorAnimation
+                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                To="Gray"
+                Duration="0:0:0.3" />
+        </Storyboard>
+
+        <Storyboard x:Key="WatermarkUp">
+            <DoubleAnimation
+                Storyboard.TargetProperty="Opacity"
+                To="0"
+                Duration="0:0:0.15" />
+        </Storyboard>
+
+        <Storyboard x:Key="WatermarkDown">
+            <DoubleAnimation
+                Storyboard.TargetProperty="Opacity"
+                To="1"
+                Duration="0:0:0.15" />
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid Margin="2">
+        <!--  Border  -->
+        <Border x:Name="Border" Style="{StaticResource WatermarkTextBoxStyle}">
+            <Grid Margin="5">
+
+                <!--  Watermark  -->
+                <TextBlock
+                    x:Name="WatermarkText"
+                    Padding="0,5,0,0"
+                    VerticalAlignment="Center"
+                    FontFamily="montserrat"
+                    FontWeight="Medium"
+                    Foreground="Gray"
+                    Opacity="1"
+                    RenderTransformOrigin="0.0,0.5"
+                    Text="{Binding Watermark, ElementName=root}">
+                    <TextBlock.RenderTransform>
+                        <TranslateTransform />
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+
+                <!--  TextBox  -->
+                <TextBox
+                    x:Name="txt"
+                    Padding="0,5,0,0"
+                    VerticalContentAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    CaretBrush="Transparent"
+                    FontFamily="montserrat"
+                    FontWeight="Medium"
+                    Foreground="{StaticResource plainTextColor3}"
+                    GotFocus="txt_GotFocus"
+                    LostFocus="txt_LostFocus"
+                    Text="{Binding Text, ElementName=root, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    TextChanged="txt_TextChanged" />
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

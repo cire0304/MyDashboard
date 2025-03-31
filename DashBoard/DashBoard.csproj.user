@@ -22,6 +22,9 @@
     <Compile Update="Controls\TextBoxControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\WatermarkTextBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\MainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -34,6 +37,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\TextBoxControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\WatermarkTextBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\ButtonStyles.xaml">
