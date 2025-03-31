@@ -18,15 +18,14 @@
             <Setter Property="Padding" Value="10,0,10,0" />
             <Setter Property="Margin" Value="10" />
         </Style>
-
-
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="90" />
+            <RowDefinition Height="120" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
+        <!--  Header  -->
         <Border>
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
@@ -41,12 +40,9 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center">
 
-                <local:TextBoxControl
-                    Margin="0,0,0,5"
-                    Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"
-                    WaterMarkText="이메일을 입력하세요." />
+                <local:WatermarkTextBox Text="{Binding Id}" Watermark="아이디를 입력해주세요" />
+                <local:WatermarkTextBox Text="{Binding Password}" Watermark="비밀번호를 입력해주세요" />
 
-                <local:TextBoxControl Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" WaterMarkText="비밀번호를 입력하세요." />
             </StackPanel>
         </Border>
 
@@ -73,8 +69,8 @@
                             Command="{Binding DataContext.StartProgramCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                             CommandParameter="{Binding}"
                             Style="{StaticResource programButton}">
-
                             <StackPanel Opacity="1">
+
                                 <!--  아이콘 이미지  -->
                                 <Image
                                     Width="64"
@@ -82,7 +78,14 @@
                                     Opacity="1"
                                     Source="{Binding Path, Converter={StaticResource ExeIconConverter}}" />
                                 <!--  앱 이름  -->
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Name}" />
+                                <TextBlock
+                                    Padding="0,5,0,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontFamily="montserrat"
+                                    FontWeight="Medium"
+                                    Foreground="Gray"
+                                    Text="{Binding Name}" />
                             </StackPanel>
                         </Button>
                     </DataTemplate>
