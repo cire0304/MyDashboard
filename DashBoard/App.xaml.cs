@@ -45,6 +45,7 @@ namespace DashBoard
             // Services
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<ProcessLauncherService>();
+            services.AddSingleton<HospitalInfomationService>();
 
             // ViewModels
             services.AddSingleton<NavigationViewModel>();

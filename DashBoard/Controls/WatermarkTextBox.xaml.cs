@@ -13,6 +13,15 @@ namespace DashBoard.Controls
             InitializeComponent();
         }
 
+        public static readonly DependencyProperty BoxBackgroundProperty =
+            DependencyProperty.Register(nameof(BoxBackground), typeof(Brush), typeof(WatermarkTextBox), new PropertyMetadata(Brushes.Transparent));
+
+        public Brush BoxBackground
+        {
+            get => (Brush)GetValue(BoxBackgroundProperty);
+            set => SetValue(BoxBackgroundProperty, value);
+        }
+
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(WatermarkTextBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 

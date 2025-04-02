@@ -26,22 +26,59 @@
         </Grid.RowDefinitions>
 
         <!--  Header  -->
-        <Border>
+        <Border Grid.Row="0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
                     <GradientStop Offset="0" Color="{StaticResource twilightShadowBackColor1}" />
                     <GradientStop Offset="1" Color="{StaticResource twilightShadowBackColor2}" />
                 </LinearGradientBrush>
             </Border.Background>
-            <StackPanel
-                Grid.Row="0"
-                Width="150"
-                Margin="10,10"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center">
 
-                <local:WatermarkTextBox Text="{Binding Id}" Watermark="아이디를 입력해주세요" />
-                <local:WatermarkTextBox Text="{Binding Password}" Watermark="비밀번호를 입력해주세요" />
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                <StackPanel
+                    Width="150"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+                    <local:WatermarkTextBox
+                        BoxBackground="#EEE5FF"
+                        Text="{Binding Id}"
+                        Watermark="아이디를 입력해주세요" />
+                    <local:WatermarkTextBox
+                        BoxBackground="#EEE5FF"
+                        Text="{Binding Password}"
+                        Watermark="비밀번호를 입력해주세요" />
+                </StackPanel>
+
+
+                <Border
+                    Background="#EEE5FF"
+                    BorderBrush="#E0E0E0"
+                    BorderThickness="1"
+                    CornerRadius="12">
+                    <Grid>
+                        <!--  IP 표시  -->
+                        <StackPanel
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+
+                            <!--  IP 정보  -->
+                            <StackPanel>
+                                <TextBlock
+                                    FontWeight="SemiBold"
+                                    Foreground="Gray"
+                                    Text="현재 병원" />
+                                <TextBlock
+                                    FontSize="14"
+                                    FontWeight="Bold"
+                                    Foreground="#5A1CEB"
+                                    Text="{Binding FileContent}" />
+                            </StackPanel>
+                        </StackPanel>
+
+                    </Grid>
+                </Border>
 
             </StackPanel>
         </Border>
