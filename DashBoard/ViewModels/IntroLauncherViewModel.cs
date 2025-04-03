@@ -20,10 +20,9 @@ namespace DashBoard.ViewModels
         [ObservableProperty]
         private string _password = "";
 
-        // Hospital Infomation
-        
+        // Hospital Infomation        
         [ObservableProperty]
-        private string fileContent;
+        private string fileContent;        
 
         public ObservableCollection<ProgramItem> Programs { get; } = new();
 
@@ -34,6 +33,14 @@ namespace DashBoard.ViewModels
 
             _processService.getProgramItemList()?.ForEach(Programs.Add);
             fileContent = _hospitalInfomationService.ReadHospitalInfomation();
+
+            _hospitalInfomationService.HospitalInfoChanged += content =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    FileContent = content;
+                });
+            };
         }
 
         [RelayCommand]
