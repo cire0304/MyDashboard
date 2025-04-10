@@ -14,7 +14,7 @@
         <Style x:Key="WatermarkTextBoxStyle" TargetType="Border">
             <Setter Property="CornerRadius" Value="8" />
             <Setter Property="BorderBrush" Value="Gray" />
-            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderThickness" Value="{Binding BoxBorderThickness, ElementName=root}" />
             <Setter Property="Background" Value="{Binding BoxBackground, ElementName=root}" />
         </Style>
 
@@ -62,11 +62,7 @@
                     Foreground="Gray"
                     Opacity="1"
                     RenderTransformOrigin="0.0,0.5"
-                    Text="{Binding Watermark, ElementName=root}">
-                    <TextBlock.RenderTransform>
-                        <TranslateTransform />
-                    </TextBlock.RenderTransform>
-                </TextBlock>
+                    Text="{Binding Watermark, ElementName=root}" />
 
                 <!--  TextBox  -->
                 <TextBox

@@ -69,11 +69,13 @@
                                     FontWeight="SemiBold"
                                     Foreground="Gray"
                                     Text="현재 병원" />
-                                <TextBlock
+                                <local:WatermarkTextBox
+                                    BoxBorderThickness="0"
                                     FontSize="14"
-                                    FontWeight="Bold"
+                                    FontWeight="SemiBold"
                                     Foreground="#5A1CEB"
-                                    Text="{Binding FileContent}" />
+                                    Text="{Binding FileContent}"
+                                    Watermark="병원 이름을 입력해주세요" />
                             </StackPanel>
                         </StackPanel>
 
