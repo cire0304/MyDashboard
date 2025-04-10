@@ -52,18 +52,16 @@
 
 
                 <Border
+                    Padding="10"
                     Background="#EEE5FF"
                     BorderBrush="#E0E0E0"
                     BorderThickness="1"
                     CornerRadius="12">
                     <Grid>
-                        <!--  IP 표시  -->
                         <StackPanel
                             Grid.Column="2"
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
-
-                            <!--  IP 정보  -->
                             <StackPanel>
                                 <TextBlock
                                     FontWeight="SemiBold"
@@ -71,8 +69,9 @@
                                     Text="현재 병원" />
                                 <local:WatermarkTextBox
                                     BoxBorderThickness="0"
-                                    FontSize="14"
-                                    FontWeight="SemiBold"
+                                    BoxFontFamily="Comic Sans MS"
+                                    BoxFontSize="20"
+                                    BoxFontWeight="SemiBold"
                                     Foreground="#5A1CEB"
                                     Text="{Binding FileContent}"
                                     Watermark="병원 이름을 입력해주세요" />

@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -24,6 +24,34 @@ namespace DashBoard.Controls
 
         public static readonly DependencyProperty WatermarkProperty =
             DependencyProperty.Register(nameof(Watermark), typeof(string), typeof(WatermarkTextBox), new PropertyMetadata(string.Empty));
+
+        public static readonly DependencyProperty BoxFontWeightProperty =
+            DependencyProperty.Register(nameof(BoxFontWeight), typeof(FontWeight), typeof(WatermarkTextBox), new PropertyMetadata(FontWeights.Normal));
+  
+        public static readonly DependencyProperty BoxFontSizeProperty =
+            DependencyProperty.Register(nameof(BoxFontSize), typeof(double), typeof(WatermarkTextBox), new PropertyMetadata(12.0));
+
+        public static readonly DependencyProperty BoxFontFamilyProperty = 
+            DependencyProperty.Register(nameof(BoxFontFamily), typeof(FontFamily), typeof(WatermarkTextBox), new PropertyMetadata(new FontFamily("Arial")));
+
+
+        public FontFamily BoxFontFamily
+        {
+            get => (FontFamily)GetValue(BoxFontFamilyProperty);
+            set => SetValue(BoxFontFamilyProperty, value);
+        }
+
+        public double BoxFontSize
+        {
+            get { return (double)GetValue(BoxFontSizeProperty); }
+            set { SetValue(BoxFontSizeProperty, value); }
+        }
+
+        public FontWeight BoxFontWeight
+        {
+            get { return (FontWeight)GetValue(BoxFontWeightProperty); }
+            set { SetValue(BoxFontWeightProperty, value); }
+        }
 
         public Thickness BoxBorderThickness
         {
