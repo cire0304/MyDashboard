@@ -20,10 +20,11 @@ namespace DashBoard.Controls
             DependencyProperty.Register(nameof(BoxBackground), typeof(Brush), typeof(WatermarkTextBox), new PropertyMetadata(Brushes.Transparent));
 
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(WatermarkTextBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+            DependencyProperty.Register(nameof(Text), typeof(string), typeof(WatermarkTextBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public static readonly DependencyProperty WatermarkProperty =
-            DependencyProperty.Register("Watermark", typeof(string), typeof(WatermarkTextBox), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register(nameof(Watermark), typeof(string), typeof(WatermarkTextBox), new PropertyMetadata(string.Empty));
+
         public Thickness BoxBorderThickness
         {
             get => (Thickness)GetValue(BoxBorderThicknessProperty);
