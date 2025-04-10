@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System.Configuration;
+using System.IO;
 using System.Windows;
 using DashBoard.Controls;
+using DashBoard.Options;
 using DashBoard.Services;
 using DashBoard.Services.IntroLauncher;
 using DashBoard.Stores;
@@ -41,6 +43,8 @@ namespace DashBoard
 
             // Store
             services.AddSingleton<MainNavigationStore>();
+            
+            services.AddSingleton<HospitalInfomationService>();
 
             // Services
             services.AddSingleton<INavigationService, NavigationService>();

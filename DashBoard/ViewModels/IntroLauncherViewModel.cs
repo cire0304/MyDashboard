@@ -43,6 +43,11 @@ namespace DashBoard.ViewModels
             };
         }
 
+        partial void OnFileContentChanged(string value)
+        {
+            _hospitalInfomationService.UpdateHospitalCode(value);
+        }
+
         [RelayCommand]
         public void StartProgram(ProgramItem program)
         {
