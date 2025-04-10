@@ -16,14 +16,19 @@ namespace DashBoard.Controls
         public static readonly DependencyProperty BoxBorderThicknessProperty =
             DependencyProperty.Register(nameof(BoxBorderThickness), typeof(Thickness), typeof(WatermarkTextBox), new PropertyMetadata(new Thickness(1)));
 
+        public static readonly DependencyProperty BoxBackgroundProperty =
+            DependencyProperty.Register(nameof(BoxBackground), typeof(Brush), typeof(WatermarkTextBox), new PropertyMetadata(Brushes.Transparent));
+
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(WatermarkTextBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public static readonly DependencyProperty WatermarkProperty =
+            DependencyProperty.Register("Watermark", typeof(string), typeof(WatermarkTextBox), new PropertyMetadata(string.Empty));
         public Thickness BoxBorderThickness
         {
             get => (Thickness)GetValue(BoxBorderThicknessProperty);
             set => SetValue(BoxBorderThicknessProperty, value);
         }
-
-        public static readonly DependencyProperty BoxBackgroundProperty =
-            DependencyProperty.Register(nameof(BoxBackground), typeof(Brush), typeof(WatermarkTextBox), new PropertyMetadata(Brushes.Transparent));
 
         public Brush BoxBackground
         {
@@ -31,17 +36,11 @@ namespace DashBoard.Controls
             set => SetValue(BoxBackgroundProperty, value);
         }
 
-        public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(WatermarkTextBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
-
-        public static readonly DependencyProperty WatermarkProperty =
-            DependencyProperty.Register("Watermark", typeof(string), typeof(WatermarkTextBox), new PropertyMetadata(string.Empty));
 
         public string Watermark
         {
@@ -56,7 +55,6 @@ namespace DashBoard.Controls
 
             (Resources["txtGotFocus"] as Storyboard)?.Begin(Border);
         }
-
         private void txt_LostFocus(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(txt.Text))
@@ -64,7 +62,6 @@ namespace DashBoard.Controls
 
             (Resources["txtLostFocus"] as Storyboard)?.Begin(Border);
         }
-
         private void txt_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!txt.IsFocused)
