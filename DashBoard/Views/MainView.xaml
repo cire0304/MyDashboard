@@ -70,8 +70,7 @@
                     <Grid.RowDefinitions>
                         <!--  Control bar  -->
                         <RowDefinition Height="25" />
-                        <!--  Header / Caption  -->
-                        <RowDefinition Height="35" />
+
                         <!--  Content Section / Child Views  -->
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
@@ -116,64 +115,7 @@
 
                     </StackPanel>
 
-                    <!--  Header / Caption  -->
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
 
-                        <!--  Caption  -->
-                        <StackPanel
-                            Grid.Column="0"
-                            VerticalAlignment="Center"
-                            Orientation="Horizontal">
-                            <fa:IconImage
-                                Width="20"
-                                Height="20"
-                                Margin="35,0,10,0"
-                                Foreground="{StaticResource titleColorBrush2}"
-                                Icon="{Binding Icon}" />
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                FontFamily="Montserrat"
-                                FontSize="16"
-                                Foreground="{StaticResource titleColorBrush2}"
-                                Text="{Binding Caption}" />
-                        </StackPanel>
-
-                        <!--  User Options  -->
-                        <StackPanel
-                            Grid.Column="1"
-                            Margin="0,0,10,0"
-                            VerticalAlignment="Center"
-                            FlowDirection="RightToLeft"
-                            Orientation="Horizontal">
-                            <Button Style="{StaticResource iconButton}" Tag="{StaticResource ColorBrush1}">
-                                <fa:IconImage Icon="AngleDown" Style="{StaticResource iconButtonIcon}" />
-                            </Button>
-
-                            <TextBlock
-                                Margin="0,0,10,0"
-                                VerticalAlignment="Center"
-                                FontFamily="Montserrat'"
-                                FontSize="12"
-                                Foreground="{StaticResource titleColorBrush2}"
-                                Text="Test" />
-
-                            <Button Style="{StaticResource iconButton}" Tag="{StaticResource ColorBrush3}">
-                                <fa:IconImage Icon="Clock" Style="{StaticResource iconButtonIcon}" />
-                            </Button>
-                            <Button Style="{StaticResource iconButton}" Tag="{StaticResource ColorBrush4}">
-                                <fa:IconImage Icon="Envelope" Style="{StaticResource iconButtonIcon}" />
-                            </Button>
-                            <Button Style="{StaticResource iconButton}" Tag="{StaticResource ColorBrush5}">
-                                <fa:IconImage Icon="Bell" Style="{StaticResource iconButtonIcon}" />
-                            </Button>
-
-                        </StackPanel>
-
-                    </Grid>
 
                     <!--  Content Section / Child Views  -->
                     <ContentControl
