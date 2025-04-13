@@ -19,19 +19,7 @@
     <Color x:Key="winBorderColor3">#836EFB</Color>
 
     <!--  Color Palette  -->
-    <!--<SolidColorBrush x:Key="color1" Color="#E285DE" />
-    <SolidColorBrush x:Key="color2" Color="#784DFD" />
-    <SolidColorBrush x:Key="color3" Color="#4ADAEC" />
-    <SolidColorBrush x:Key="color4" Color="#FB539B" />
-    <SolidColorBrush x:Key="color5" Color="#7E82FC" />
-    <SolidColorBrush x:Key="color6" Color="#FFC047" />
-    <SolidColorBrush x:Key="color7" Color="#EF6C96" />
-    <SolidColorBrush x:Key="color8" Color="#78A3FC" />
-    <SolidColorBrush x:Key="color9" Color="#07F3C0" />
-    <SolidColorBrush x:Key="color10" Color="#FBA1AA" />-->
-
-    <!--  Color Palette  -->
-    <!--<Color x:Key="Color1">#E285DE</Color>
+    <Color x:Key="Color1">#E285DE</Color>
     <Color x:Key="Color2">#784DFD</Color>
     <Color x:Key="Color3">#4ADAEC</Color>
     <Color x:Key="Color4">#FB539B</Color>
@@ -40,7 +28,7 @@
     <Color x:Key="Color7">#EF6C96</Color>
     <Color x:Key="Color8">#78A3FC</Color>
     <Color x:Key="Color9">#07F3C0</Color>
-    <Color x:Key="Color10">#FBA1AA</Color>-->
+    <Color x:Key="Color10">#FBA1AA</Color>
     <SolidColorBrush x:Key="ColorBrush1" Color="#E285DE" />
     <SolidColorBrush x:Key="ColorBrush2" Color="#784DFD" />
     <SolidColorBrush x:Key="ColorBrush3" Color="#4ADAEC" />
@@ -53,12 +41,12 @@
     <SolidColorBrush x:Key="ColorBrush10" Color="#FBA1AA" />
 
     <!--  Font Colors  -->
-    <!--<Color x:Key="titleColor1">#E0E1F1</Color>
+    <Color x:Key="titleColor1">#E0E1F1</Color>
     <Color x:Key="titleColor2">#D5CFF5</Color>
     <Color x:Key="titleColor3">#BCBEE0</Color>
     <Color x:Key="plainTextColor1">#9497CD</Color>
     <Color x:Key="plainTextColor2">#7C80C2</Color>
-    <Color x:Key="plainTextColor3">#7376BD</Color>-->
+    <Color x:Key="plainTextColor3">#7376BD</Color>
     <SolidColorBrush x:Key="titleColorBrush1" Color="#E0E1F1" />
     <SolidColorBrush x:Key="titleColorBrush2" Color="#D5CFF5" />
     <SolidColorBrush x:Key="titleColorBrush3" Color="#BCBEE0" />
