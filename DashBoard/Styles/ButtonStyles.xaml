@@ -9,7 +9,7 @@
         <Setter Property="Height" Value="50" />
         <Setter Property="Margin" Value="-5,0,0,5" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{StaticResource plainTextColor3}" />
+        <Setter Property="Foreground" Value="{StaticResource plainTextColorBrush3}" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
@@ -28,15 +28,15 @@
             <!--  Mouse over back color  -->
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Margin" Value="0,0,0,5" />
-                <Setter Property="Background" Value="{StaticResource panelOverColor}" />
-                <Setter Property="Foreground" Value="{StaticResource titleColor3}" />
+                <Setter Property="Background" Value="{StaticResource panelOverColorBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource titleColorBrush3}" />
                 <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
             </Trigger>
 
             <!--  Active button back color  -->
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Margin" Value="0,0,0,5" />
-                <Setter Property="Background" Value="{StaticResource panelActiveColor}" />
+                <Setter Property="Background" Value="{StaticResource panelActiveColorBrush}" />
                 <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
                 <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
             </Trigger>
@@ -66,7 +66,7 @@
         <!--  Control over back color  -->
         <Setter Property="Width" Value="35" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{StaticResource plainTextColor3}" />
+        <Setter Property="Foreground" Value="{StaticResource plainTextColorBrush3}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -80,7 +80,7 @@
         <Style.Triggers>
             <!--  Control over back color  -->
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource panelActiveColor}" />
+                <Setter Property="Background" Value="{StaticResource panelActiveColorBrush}" />
                 <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
             </Trigger>
         </Style.Triggers>
@@ -99,7 +99,7 @@
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Width" Value="25" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{StaticResource plainTextColor1}" />
+        <Setter Property="Foreground" Value="{StaticResource plainTextColorBrush1}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
