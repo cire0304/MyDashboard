@@ -125,26 +125,109 @@
         <Setter Property="Height" Value="16" />
     </Style>
 
-    <!--  Program Button Style  -->
     <Style x:Key="programButton" TargetType="Button">
         <Setter Property="Margin" Value="10" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border
-                        x:Name="border"
-                        Padding="5"
-                        Background="#FFFFFF"
-                        BorderThickness="0"
-                        CornerRadius="10">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <!--  Mouse over back color  -->
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{StaticResource titleColor3}" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
+                    <Grid>
+                        <Border
+                            x:Name="border"
+                            Padding="5"
+                            Background="#FFFFFF"
+                            BorderThickness="0"
+                            CornerRadius="10"
+                            RenderTransformOrigin="0.5,0.5">
+                            <Border.Effect>
+                                <DropShadowEffect
+                                    x:Name="shadow"
+                                    BlurRadius="0"
+                                    Opacity="0"
+                                    ShadowDepth="0"
+                                    Color="#5A1CEB" />
+                            </Border.Effect>
+
+                            <Border.RenderTransform>
+                                <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
+                            </Border.RenderTransform>
+
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+
+                        <!--  Button Animation  -->
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Storyboard.TargetName="border"
+                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                            To="#FFFFFF"
+                                            Duration="0:0:0.2" />
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="shadow"
+                                            Storyboard.TargetProperty="BlurRadius"
+                                            To="0"
+                                            Duration="0:0:0.2" />
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="shadow"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="0"
+                                            Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="scaleTransform"
+                                            Storyboard.TargetProperty="ScaleX"
+                                            To="0.95"
+                                            Duration="0:0:0.1" />
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="scaleTransform"
+                                            Storyboard.TargetProperty="ScaleY"
+                                            To="0.95"
+                                            Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Storyboard.TargetName="border"
+                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                            To="{StaticResource titleColor3}"
+                                            Duration="0:0:0.2" />
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="shadow"
+                                            Storyboard.TargetProperty="BlurRadius"
+                                            To="15"
+                                            Duration="0:0:0.2" />
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="shadow"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="0.5"
+                                            Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Storyboard.TargetName="border"
+                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                            To="{StaticResource titleColor3}"
+                                            Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
