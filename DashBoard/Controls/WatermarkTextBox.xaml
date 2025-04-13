@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:DashBoard.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     x:Name="root"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -61,9 +62,23 @@
                     FontSize="{Binding BoxFontSize, ElementName=root}"
                     FontWeight="{Binding BoxFontWeight, ElementName=root}"
                     Foreground="Gray"
-                    Opacity="1"
                     RenderTransformOrigin="0.0,0.5"
-                    Text="{Binding Watermark, ElementName=root}" />
+                    Text="{Binding Watermark, ElementName=root}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Opacity" Value="0" />
+                            <Style.Triggers>
+                                <!--  텍스트 값이 입력 안되어 있으면, 워터마크 텍스트 표시  -->
+                                <DataTrigger Binding="{Binding Text, ElementName=txt}" Value="">
+                                    <Setter Property="Opacity" Value="1" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Text, ElementName=txt}" Value="{x:Null}">
+                                    <Setter Property="Opacity" Value="1" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
 
                 <!--  TextBox  -->
                 <TextBox
