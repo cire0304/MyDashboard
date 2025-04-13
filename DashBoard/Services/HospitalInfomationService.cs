@@ -17,6 +17,7 @@ namespace DashBoard.Services
         private string? PARSING_KEY;
         private Dictionary<string, string>? _hospitalCodeMap;
 
+        // MPM에서 병원 정보가 변경되면 실행
         public event Action<string>? HospitalInfoChanged;
 
         public HospitalInfomationService(IConfiguration configuration)

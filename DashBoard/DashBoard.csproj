@@ -17,16 +17,6 @@
 	    <OutputPath>bin\Release\</OutputPath>
     </PropertyGroup>
 
-    <ItemGroup>
-    <None Remove="Settings\hospital-config.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Settings\hospital-config.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="FontAwesome.Sharp" Version="6.6.0" />
@@ -45,6 +35,9 @@
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="Settings\hospital-config.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
