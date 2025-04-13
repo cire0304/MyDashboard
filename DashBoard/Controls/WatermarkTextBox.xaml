@@ -91,7 +91,7 @@
                     FontFamily="{Binding BoxFontFamily, ElementName=root}"
                     FontSize="{Binding BoxFontSize, ElementName=root}"
                     FontWeight="{Binding BoxFontWeight, ElementName=root}"
-                    Foreground="{StaticResource plainTextColor3}"
+                    Foreground="{StaticResource plainTextColorBrush3}"
                     GotFocus="txt_GotFocus"
                     LostFocus="txt_LostFocus"
                     Text="{Binding Text, ElementName=root, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

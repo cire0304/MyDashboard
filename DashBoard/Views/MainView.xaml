@@ -91,7 +91,7 @@
                             x:Name="btnClose"
                             Click="btnClose_Click"
                             Style="{StaticResource controlButton}"
-                            Tag="{StaticResource color4}">
+                            Tag="{StaticResource ColorBrush4}">
                             <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}" />
                         </Button>
 
@@ -99,7 +99,7 @@
                             x:Name="btnMaximze"
                             Click="btnMaximze_Click"
                             Style="{StaticResource controlButton}"
-                            Tag="{StaticResource color8}">
+                            Tag="{StaticResource ColorBrush8}">
                             <fa:IconImage
                                 Width="12"
                                 Icon="WindowMaximize"
@@ -110,7 +110,7 @@
                             x:Name="btnMinimize"
                             Click="btnMinimize_Click"
                             Style="{StaticResource controlButton}"
-                            Tag="{StaticResource color6}">
+                            Tag="{StaticResource ColorBrush6}">
                             <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}" />
                         </Button>
 
@@ -132,13 +132,13 @@
                                 Width="20"
                                 Height="20"
                                 Margin="35,0,10,0"
-                                Foreground="{StaticResource titleColor2}"
+                                Foreground="{StaticResource titleColorBrush2}"
                                 Icon="{Binding Icon}" />
                             <TextBlock
                                 VerticalAlignment="Center"
                                 FontFamily="Montserrat"
                                 FontSize="16"
-                                Foreground="{StaticResource titleColor2}"
+                                Foreground="{StaticResource titleColorBrush2}"
                                 Text="{Binding Caption}" />
                         </StackPanel>
 
@@ -149,7 +149,7 @@
                             VerticalAlignment="Center"
                             FlowDirection="RightToLeft"
                             Orientation="Horizontal">
-                            <Button Style="{StaticResource iconButton}" Tag="{StaticResource color1}">
+                            <Button Style="{StaticResource iconButton}" Tag="{StaticResource ColorBrush1}">
                                 <fa:IconImage Icon="AngleDown" Style="{StaticResource iconButtonIcon}" />
                             </Button>
 
@@ -158,16 +158,16 @@
                                 VerticalAlignment="Center"
                                 FontFamily="Montserrat'"
                                 FontSize="12"
-                                Foreground="{StaticResource titleColor2}"
+                                Foreground="{StaticResource titleColorBrush2}"
                                 Text="Test" />
 
-                            <Button Style="{StaticResource iconButton}" Tag="{StaticResource color3}">
+                            <Button Style="{StaticResource iconButton}" Tag="{StaticResource ColorBrush3}">
                                 <fa:IconImage Icon="Clock" Style="{StaticResource iconButtonIcon}" />
                             </Button>
-                            <Button Style="{StaticResource iconButton}" Tag="{StaticResource color4}">
+                            <Button Style="{StaticResource iconButton}" Tag="{StaticResource ColorBrush4}">
                                 <fa:IconImage Icon="Envelope" Style="{StaticResource iconButtonIcon}" />
                             </Button>
-                            <Button Style="{StaticResource iconButton}" Tag="{StaticResource color5}">
+                            <Button Style="{StaticResource iconButton}" Tag="{StaticResource ColorBrush5}">
                                 <fa:IconImage Icon="Bell" Style="{StaticResource iconButtonIcon}" />
                             </Button>
 

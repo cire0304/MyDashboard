@@ -31,7 +31,7 @@
                     FontFamily="Segoe UI"
                     FontSize="20"
                     FontWeight="Medium"
-                    Foreground="{StaticResource titleColor2}"
+                    Foreground="{StaticResource titleColorBrush2}"
                     Text="Dashboard" />
             </StackPanel>
 
@@ -39,7 +39,7 @@
             <RadioButton
                 Command="{Binding ToHomeCommand}"
                 Style="{StaticResource menuButton}"
-                Tag="{StaticResource color1}">
+                Tag="{StaticResource ColorBrush1}">
                 <StackPanel Orientation="Horizontal">
                     <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}" />
                     <TextBlock Style="{StaticResource menuButtonText}" Text="Home" />
@@ -49,7 +49,7 @@
             <RadioButton
                 Command="{Binding ToProgramLauncherCommand}"
                 Style="{StaticResource menuButton}"
-                Tag="{StaticResource color3}">
+                Tag="{StaticResource ColorBrush3}">
                 <StackPanel Orientation="Horizontal">
                     <fa:IconImage Icon="Th" Style="{StaticResource menuButtonIcon}" />
                     <TextBlock Style="{StaticResource menuButtonText}" Text="Intro" />
@@ -59,7 +59,7 @@
             <RadioButton
                 Command="{Binding ToCustomerCommand}"
                 Style="{StaticResource menuButton}"
-                Tag="{StaticResource color2}">
+                Tag="{StaticResource ColorBrush2}">
                 <StackPanel Orientation="Horizontal">
                     <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}" />
                     <TextBlock Style="{StaticResource menuButtonText}" Text="Users" />
