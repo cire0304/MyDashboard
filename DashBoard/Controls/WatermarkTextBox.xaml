@@ -63,7 +63,8 @@
                     FontWeight="{Binding BoxFontWeight, ElementName=root}"
                     Foreground="Gray"
                     RenderTransformOrigin="0.0,0.5"
-                    Text="{Binding Watermark, ElementName=root}">
+                    Text="{Binding Watermark, ElementName=root}"
+                    TextWrapping="Wrap">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Setter Property="Opacity" Value="0" />
@@ -95,7 +96,8 @@
                     GotFocus="txt_GotFocus"
                     LostFocus="txt_LostFocus"
                     Text="{Binding Text, ElementName=root, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    TextChanged="txt_TextChanged" />
+                    TextChanged="txt_TextChanged"
+                    TextWrapping="Wrap" />
             </Grid>
         </Border>
     </Grid>

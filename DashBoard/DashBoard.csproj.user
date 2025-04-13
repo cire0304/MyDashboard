@@ -7,18 +7,6 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Controls\IntroLauncherControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\NavigationControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\CustomerControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\HomeControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Controls\TextBoxControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -28,14 +16,14 @@
     <Compile Update="Views\MainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\UI\HospitalInfoUI.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UI\ProgramLauncherUI.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Controls\IntroLauncherControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\NavigationControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Controls\TextBoxControl.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -51,13 +39,13 @@
     <Page Update="Styles\UIColors.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\CustomerControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\HomeControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UI\HospitalInfoUI.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UI\ProgramLauncherUI.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

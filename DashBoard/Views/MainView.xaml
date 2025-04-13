@@ -7,6 +7,7 @@
     xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
     xmlns:local="clr-namespace:DashBoard.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="clr-namespace:DashBoard.Views.UI"
     xmlns:viewModels="clr-namespace:DashBoard.ViewModels"
     Title="MainView"
     Width="1300"
@@ -18,16 +19,12 @@
     mc:Ignorable="d">
 
     <Window.Resources>
-        <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
-            <ctrl:HomeControl />
+        <DataTemplate DataType="{x:Type viewModels:HospitalInfoViewModel}">
+            <ui:HospitalInfoUI />
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModels:CustomerViewModel}">
-            <ctrl:CustomerView />
-        </DataTemplate>
-
-        <DataTemplate DataType="{x:Type viewModels:IntroLauncherViewModel}">
-            <ctrl:IntroLauncherControl />
+        <DataTemplate DataType="{x:Type viewModels:ProgramLancherViewModel}">
+            <ui:ProgramLauncherUI />
         </DataTemplate>
     </Window.Resources>
 
@@ -45,16 +42,16 @@
 
         <Grid Margin="1">
             <Grid.ColumnDefinitions>
-                <!--  Navigation menu  -->
+                <!--  Hospital Info  -->
                 <ColumnDefinition Width="250" />
                 <!--  Content Section  -->
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <!--  Navigation Menu  -->
 
-            <ctrl:NavigationControl Grid.Column="0" DataContext="{Binding NavigationViewModel}" />
+            <!--  Hospital Info  -->
+            <ui:HospitalInfoUI />
 
-            <!--  Main Section  -->
+            <!--  Content Section  -->
             <Border
                 Grid.Column="1"
                 ClipToBounds="True"
@@ -68,14 +65,13 @@
 
                 <Grid>
                     <Grid.RowDefinitions>
-                        <!--  Control bar  -->
+                        <!--  Hospital Info  -->
                         <RowDefinition Height="25" />
-
-                        <!--  Content Section / Child Views  -->
+                        <!--  Content Section  -->
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <!--  Control bar  -->
+
                     <StackPanel
                         x:Name="pnlControlBar"
                         Grid.Row="0"
@@ -115,13 +111,9 @@
 
                     </StackPanel>
 
+                    <!--  Content Section  -->
+                    <ui:ProgramLauncherUI Grid.Row="2" />
 
-
-                    <!--  Content Section / Child Views  -->
-                    <ContentControl
-                        Grid.Row="2"
-                        Margin="25"
-                        Content="{Binding CurrentChildViewModel}" />
 
                 </Grid>
 

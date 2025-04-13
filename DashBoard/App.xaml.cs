@@ -43,26 +43,18 @@ namespace DashBoard
 
             // Store
             services.AddSingleton<MainNavigationStore>();
-            
+            services.AddSingleton<MainStore>();
+
             services.AddSingleton<HospitalInfomationService>();
 
             // Services
-            services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<ProcessLauncherService>();
             services.AddSingleton<HospitalInfomationService>();
 
             // ViewModels
-            services.AddSingleton<NavigationViewModel>();
             services.AddSingleton<MainViewModel>();
-            services.AddSingleton<HomeViewModel>();
-            services.AddSingleton<CustomerViewModel>();
-            services.AddSingleton<IntroLauncherViewModel>();
-
-            // Controls
-            services.AddSingleton<CustomerView>();
-            services.AddSingleton<HomeControl>();
-            services.AddSingleton<IntroLauncherControl>();
-            services.AddSingleton<NavigationControl>();
+            services.AddSingleton<ProgramLancherViewModel>();
+            services.AddSingleton<HospitalInfoViewModel>();
 
             // Views
             services.AddSingleton(s => new MainView()
