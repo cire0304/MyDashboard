@@ -71,6 +71,8 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
+                    <!--  Content Section  -->
+                    <ui:ProgramLauncherUI Grid.Row="1" />
 
                     <StackPanel
                         x:Name="pnlControlBar"
@@ -108,11 +110,7 @@
                             Tag="{StaticResource ColorBrush6}">
                             <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}" />
                         </Button>
-
                     </StackPanel>
-
-                    <!--  Content Section  -->
-                    <ui:ProgramLauncherUI Grid.Row="2" />
 
 
                 </Grid>

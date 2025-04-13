@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DashBoard.Models.IntroLauncher;
@@ -32,6 +27,15 @@ namespace DashBoard.ViewModels
             if (program.Path == null) return;
 
             _processService.StartProgram(program, _mainStore.Id, _mainStore.Password);
+        }
+
+        [RelayCommand]
+        public void LaunchProgramByIndex(int index)
+        {
+            if (index >= 0 && index < Programs.Count)
+            {
+                StartProgramCommand.Execute(Programs[index]);
+            }
         }
     }
 }

@@ -156,6 +156,7 @@
                         </Border>
 
                         <!--  Button Animation  -->
+                        <!--  Button Group CommonStates  -->
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
@@ -177,6 +178,7 @@
                                             Duration="0:0:0.2" />
                                     </Storyboard>
                                 </VisualState>
+                                <!--  Button Pressed  -->
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
                                         <DoubleAnimation
@@ -191,6 +193,7 @@
                                             Duration="0:0:0.1" />
                                     </Storyboard>
                                 </VisualState>
+                                <!--  Button MouseOver  -->
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
                                         <ColorAnimation
@@ -212,8 +215,9 @@
                                 </VisualState>
                                 <VisualState x:Name="Disabled" />
                             </VisualStateGroup>
-
+                            <!--  Button Group FocusStates  -->
                             <VisualStateGroup x:Name="FocusStates">
+                                <!--  Button Group Focused  -->
                                 <VisualState x:Name="Focused">
                                     <Storyboard>
                                         <ColorAnimation

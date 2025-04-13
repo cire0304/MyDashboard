@@ -58,11 +58,11 @@
                                     BoxFontSize="24"
                                     BoxFontWeight="SemiBold"
                                     Foreground="#5A1CEB"
+                                    IsTabStop="False"
                                     Text="{Binding HospitalInfo}"
                                     Watermark="병원 이름을 입력해주세요" />
                             </StackPanel>
                         </StackPanel>
-
                     </Grid>
                 </Border>
 

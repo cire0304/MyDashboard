@@ -9,7 +9,6 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-
     <UserControl.Resources>
         <converts:ExeIconConverter x:Key="ExeIconConverter" />
 
@@ -34,7 +33,10 @@
                 </LinearGradientBrush>
             </Border.Background>
 
-            <ItemsControl ItemsSource="{Binding Programs}">
+            <ItemsControl
+                Margin="10,15"
+                IsTabStop="False"
+                ItemsSource="{Binding Programs}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
@@ -69,6 +71,7 @@
                         </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
+
             </ItemsControl>
         </Border>
 
