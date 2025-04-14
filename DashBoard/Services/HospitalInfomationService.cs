@@ -2,8 +2,6 @@
 using System.Windows;
 using DashBoard.Utils;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using static System.Windows.Forms.Design.AxImporter;
 
 namespace DashBoard.Services
 {
