@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DashBoard.Models
+﻿namespace DashBoard.Models
 {
-    internal class HospitalInfo
+    public  class HospitalInfo
     {
+        public string Host { get; set; }
+        public string Name { get; set; }
+        public string Id { get; set; }
+        public string Password{ get; set; }
     }
 }

@@ -15,8 +15,7 @@ namespace DashBoard.Services
         private string _hospitalConfigPath;
         private string? FILE_PATH;
         private string? FILE_NAME;
-        private List<string>? FILE_EXTENTIONS;
-        private string? PARSING_KEY;
+        private List<string>? FILE_EXTENTIONS;       
         private Dictionary<string, string>? _hospitalCodeMap;
 
         // MPM에서 병원 정보가 변경되면 실행
@@ -52,8 +51,7 @@ namespace DashBoard.Services
                 FILE_NAME = _configuration["HospitalInfomationService:FileName"] ?? throw new Exception("FileName not configured");
                 FILE_EXTENTIONS = _configuration
                     .GetSection("HospitalInfomationService:FileExtenstions")
-                    .Get<List<string>>() ?? throw new Exception("FileExtensions not configured");
-                PARSING_KEY = _configuration["HospitalInfomationService:ParsingKey"] ?? throw new Exception("ParsingKey not configured");
+                    .Get<List<string>>() ?? throw new Exception("FileExtensions not configured");                
 
                 // 병원 아이피, 이름, 아이디 및 비밀번호 관련된 파일 경로
                 _hospitalConfigPath = _configuration["HospitalInfomationService:HospitalConfigFile"] ?? throw new Exception("_hospitalConfigPath not configured");
