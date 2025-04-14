@@ -1,0 +1,7 @@
+{
+"Host": "121.149.170.76",
+"Port": "8888",
+"IsEncrypted": "N",
+"UrlScheme": "http",
+"BaseUr1": "/MediCare/NGTApi/call"
+}

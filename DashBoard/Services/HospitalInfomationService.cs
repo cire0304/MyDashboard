@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Windows;
+using DashBoard.Utils;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using static System.Windows.Forms.Design.AxImporter;
@@ -14,6 +15,7 @@ namespace DashBoard.Services
         private string _hospitalConfigPath;
         private string? FILE_PATH;
         private string? FILE_NAME;
+        private List<string>? FILE_EXTENTIONS;
         private string? PARSING_KEY;
         private Dictionary<string, string>? _hospitalCodeMap;
 
@@ -30,7 +32,7 @@ namespace DashBoard.Services
                 LoadHospitalConfig();
 
                 // _fileSystemWatcher 초기화
-                _fileSystemWatcher = new FileSystemWatcher(FILE_PATH, FILE_NAME);
+                _fileSystemWatcher = new FileSystemWatcher(FILE_PATH);
                 _fileSystemWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size;
                 _fileSystemWatcher.Changed += (s, e) => OnHospitalInfoChanged();
                 _fileSystemWatcher.EnableRaisingEvents = true;
@@ -43,22 +45,37 @@ namespace DashBoard.Services
 
         private void LoadHospitalConfig()
         {
-            FILE_PATH = _configuration["HospitalInfomationService:FilePath"] ?? throw new Exception("FilePath not configured");
-            FILE_NAME = _configuration["HospitalInfomationService:FileName"] ?? throw new Exception("FileName not configured");
-            PARSING_KEY = _configuration["HospitalInfomationService:ParsingKey"] ?? throw new Exception("ParsingKey not configured");
-            _hospitalConfigPath = _configuration["HospitalInfomationService:HospitalConfigFile"] ?? throw new Exception("_hospitalConfigPath not configured");
-            _hospitalConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _hospitalConfigPath);
-
-            if (File.Exists(_hospitalConfigPath))
+            try
             {
-                var json = File.ReadAllText(_hospitalConfigPath);
-                var jsonObj = Newtonsoft.Json.Linq.JObject.Parse(json);
-                _hospitalCodeMap = jsonObj["HospitalCodeMap"]?.ToObject<Dictionary<string, string>>() ?? new Dictionary<string, string>();
+                // TMax Connection config 파일 설정
+                FILE_PATH = _configuration["HospitalInfomationService:FilePath"] ?? throw new Exception("FilePath not configured");
+                FILE_NAME = _configuration["HospitalInfomationService:FileName"] ?? throw new Exception("FileName not configured");
+                FILE_EXTENTIONS = _configuration
+                    .GetSection("HospitalInfomationService:FileExtenstions")
+                    .Get<List<string>>() ?? throw new Exception("FileExtensions not configured");
+                PARSING_KEY = _configuration["HospitalInfomationService:ParsingKey"] ?? throw new Exception("ParsingKey not configured");
+
+                // 병원 아이피, 이름, 아이디 및 비밀번호 관련된 파일 경로
+                _hospitalConfigPath = _configuration["HospitalInfomationService:HospitalConfigFile"] ?? throw new Exception("_hospitalConfigPath not configured");
+                _hospitalConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _hospitalConfigPath);
+
+                if (File.Exists(_hospitalConfigPath))
+                {
+                    var json = File.ReadAllText(_hospitalConfigPath);
+                    var jsonObj = Newtonsoft.Json.Linq.JObject.Parse(json);
+                    _hospitalCodeMap = jsonObj["HospitalCodeMap"]?.ToObject<Dictionary<string, string>>() ?? new Dictionary<string, string>();
+                }
+                else
+                {
+                    _hospitalCodeMap = new Dictionary<string, string>();
+                }
             }
-            else
+            catch (Exception ex)
             {
                 _hospitalCodeMap = new Dictionary<string, string>();
+                MessageBox.Show(ex.Message, $"{this.GetType().Name}", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
         }
 
         private void OnHospitalInfoChanged()
@@ -66,35 +83,32 @@ namespace DashBoard.Services
             HospitalInfoChanged?.Invoke(ReadHospitalInfomation());       
         }
 
+        private string GetHospitalFilePath()
+        {
+            string basePath = Path.Combine(FILE_PATH!, FILE_NAME!);
+            return FILE_EXTENTIONS!
+                    .Select(ext => basePath + ext)
+                    .FirstOrDefault(File.Exists)!;
+        }
+
         public string ReadHospitalInfomation()
         {
             try
             {
-                string file = Path.Combine(FILE_PATH, FILE_NAME);
+                string file = GetHospitalFilePath();
+
                 if (!File.Exists(file))
                 {
                     return "File not found!";
                 }
 
-                using (var stream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                using (var reader = new StreamReader(stream))
-                {
-                    string? line;
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        if (line.StartsWith(PARSING_KEY))
-                        {
-                            string value = line.Split('=')[1].Trim();
-                            
-                            if (_hospitalCodeMap.TryGetValue(value, out var hospitalName))
-                            {
-                                return hospitalName;
-                            }
+                var connectionConfig = ConfigLoader.LoadConfig(file);
 
-                            return "";
-                        }
-                    }
+                if (_hospitalCodeMap!.TryGetValue(connectionConfig.Host, out var hospitalName))
+                {
+                    return hospitalName;
                 }
+                return "";
             }
             catch (Exception ex)
             {
@@ -127,24 +141,12 @@ namespace DashBoard.Services
 
         public string? GetCurrentHospitalCode()
         {
-            string file = Path.Combine(FILE_PATH, FILE_NAME);
+            string file = GetHospitalFilePath();
 
             if (!File.Exists(file)) return null;
 
-            using (var stream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            using (var reader = new StreamReader(stream))
-            {
-                string? line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    if (line.StartsWith(PARSING_KEY))
-                    {
-                        return line.Split('=')[1].Trim();
-                    }
-                }
-            }
-
-            return null;
+            var connectionConfig = ConfigLoader.LoadConfig(file);
+            return connectionConfig.Host;
         }
     }
 }
