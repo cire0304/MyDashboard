@@ -1,5 +1,9 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Windows;
+using DashBoard.Models;
 using DashBoard.Utils;
 using Microsoft.Extensions.Configuration;
 
@@ -8,141 +12,148 @@ namespace DashBoard.Services
     public class HospitalInfomationService
     {
         private readonly IConfiguration? _configuration;
-        private FileSystemWatcher? _fileSystemWatcher;
+        private readonly FileSystemWatcher? _fileSystemWatcher;
+        private readonly FilesWatcher _filesWatcher;
 
-        private string _hospitalConfigPath;
-        private string? FILE_PATH;
-        private string? FILE_NAME;
-        private List<string>? FILE_EXTENTIONS;       
-        private Dictionary<string, string>? _hospitalCodeMap;
+        private readonly string HOSPITAL_INFO_MAP = "HospitalInfoMap";
+        private readonly string HOSPITAL_INFO_FILE;
+        private readonly string HOSPTIAL_CONFIG_DIRECTORY;
+        private readonly List<string> HOSPITAL_CONFIG_FILES;
 
-        // MPM에서 병원 정보가 변경되면 실행
-        public event Action<string>? HospitalInfoChanged;
+        private Dictionary<string, HospitalInfo>? _hospitalnfoMap;
+
+
+        public event Action<HospitalInfo>? HospitalInfoChanged;
 
         public HospitalInfomationService(IConfiguration configuration)
         {
+            _configuration = configuration;
+
             try
             {
-                _configuration = configuration;
-
                 // 병원 정보 읽기
-                LoadHospitalConfig();
-
-                // _fileSystemWatcher 초기화
-                _fileSystemWatcher = new FileSystemWatcher(FILE_PATH);
-                _fileSystemWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size;
-                _fileSystemWatcher.Changed += (s, e) => OnHospitalInfoChanged();
-                _fileSystemWatcher.EnableRaisingEvents = true;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, $"{this.GetType().Name}", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void LoadHospitalConfig()
-        {
-            try
-            {
                 // TMax Connection config 파일 설정
-                FILE_PATH = _configuration["HospitalInfomationService:FilePath"] ?? throw new Exception("FilePath not configured");
-                FILE_NAME = _configuration["HospitalInfomationService:FileName"] ?? throw new Exception("FileName not configured");
-                FILE_EXTENTIONS = _configuration
-                    .GetSection("HospitalInfomationService:FileExtenstions")
-                    .Get<List<string>>() ?? throw new Exception("FileExtensions not configured");                
+                HOSPTIAL_CONFIG_DIRECTORY = _configuration["HospitalInfomationService:ConnectionConfigDirectory"] ?? throw new Exception("ConnectionConfigDirectory not configured");
+                HOSPITAL_CONFIG_FILES = _configuration.GetSection("HospitalInfomationService:ConnectionConfigFiles").Get<List<string>>() ?? throw new Exception("ConnectionConfigFiles not configured");
 
                 // 병원 아이피, 이름, 아이디 및 비밀번호 관련된 파일 경로
-                _hospitalConfigPath = _configuration["HospitalInfomationService:HospitalConfigFile"] ?? throw new Exception("_hospitalConfigPath not configured");
-                _hospitalConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _hospitalConfigPath);
+                HOSPITAL_INFO_FILE = _configuration["HospitalInfomationService:HospitalInfoFile"] ?? throw new Exception("_hospitalConfigPath not configured");
+                HOSPITAL_INFO_FILE = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, HOSPITAL_INFO_FILE);
 
-                if (File.Exists(_hospitalConfigPath))
+                if (File.Exists(HOSPITAL_INFO_FILE))
                 {
-                    var json = File.ReadAllText(_hospitalConfigPath);
+                    var json = File.ReadAllText(HOSPITAL_INFO_FILE);
                     var jsonObj = Newtonsoft.Json.Linq.JObject.Parse(json);
-                    _hospitalCodeMap = jsonObj["HospitalCodeMap"]?.ToObject<Dictionary<string, string>>() ?? new Dictionary<string, string>();
+                    _hospitalnfoMap = jsonObj[HOSPITAL_INFO_MAP]
+                        ?.ToObject<Dictionary<string, HospitalInfo>>()
+                        ?? new Dictionary<string, HospitalInfo>();
                 }
                 else
                 {
-                    _hospitalCodeMap = new Dictionary<string, string>();
+                    _hospitalnfoMap = new Dictionary<string, HospitalInfo>();
                 }
+
             }
             catch (Exception ex)
             {
-                _hospitalCodeMap = new Dictionary<string, string>();
+                _hospitalnfoMap = new Dictionary<string, HospitalInfo>();
                 MessageBox.Show(ex.Message, $"{this.GetType().Name}", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
+            
+            try
+            {
+                _filesWatcher = new FilesWatcher(HOSPTIAL_CONFIG_DIRECTORY, HOSPITAL_CONFIG_FILES);                
+                _filesWatcher.OnEvent((s, e) => OnHospitalInfoChanged());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, $"{this.GetType().Name}", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void OnHospitalInfoChanged()
         {
-            HospitalInfoChanged?.Invoke(ReadHospitalInfomation());       
+
+                HospitalInfoChanged?.Invoke(ReadHospitalInfomation());
+
+
         }
 
         private string GetHospitalFilePath()
         {
-            string basePath = Path.Combine(FILE_PATH!, FILE_NAME!);
-            return FILE_EXTENTIONS!
-                    .Select(ext => basePath + ext)
-                    .FirstOrDefault(File.Exists)!;
+            return HOSPITAL_CONFIG_FILES
+                .Select(name => Path.Combine(HOSPTIAL_CONFIG_DIRECTORY!, name))
+                .FirstOrDefault(File.Exists) ?? throw new FileNotFoundException("GetHospitalFilePath Error"); ;
         }
 
-        public string ReadHospitalInfomation()
-        {
+        public HospitalInfo ReadHospitalInfomation()
+        {            
             try
             {
+                
                 string file = GetHospitalFilePath();
-
-                if (!File.Exists(file))
-                {
-                    return "File not found!";
-                }
 
                 var connectionConfig = ConfigLoader.LoadConfig(file);
 
-                if (_hospitalCodeMap!.TryGetValue(connectionConfig.Host, out var hospitalName))
+                if (_hospitalnfoMap!.TryGetValue(connectionConfig.Host, out var hospitalName))
                 {
                     return hospitalName;
                 }
-                return "";
+
+                return new HospitalInfo();
+            }
+            catch (FileNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, ex.FileName, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "에러 발생", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "에러 발생[ReadHospitalInfomation]", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            return "";
+            return new HospitalInfo() ;
         }
 
         private void SaveHospitalConfig()
         {
             var jsonObj = new Newtonsoft.Json.Linq.JObject
             {
-                ["HospitalCodeMap"] = Newtonsoft.Json.Linq.JObject.FromObject(_hospitalCodeMap)
+                [HOSPITAL_INFO_MAP] = Newtonsoft.Json.Linq.JObject.FromObject(_hospitalnfoMap)
             };
-            File.WriteAllText(_hospitalConfigPath, jsonObj.ToString());
+            File.WriteAllText(HOSPITAL_INFO_FILE, jsonObj.ToString());
         }
 
-        public void UpdateHospitalCode(string newHospitalName)
+        public void UpdateHospitalInfo(HospitalInfo newHospitalName)
         {
             // 예를 들어 현재 파일에서 읽은 병원 코드가
             string? currentCode = GetCurrentHospitalCode();
 
             if (string.IsNullOrWhiteSpace(currentCode)) return;
 
-            _hospitalCodeMap[currentCode] = newHospitalName;
+            _hospitalnfoMap[currentCode] = newHospitalName;
 
             SaveHospitalConfig();
         }
 
         public string? GetCurrentHospitalCode()
         {
-            string file = GetHospitalFilePath();
+            try
+            {
+                string file = GetHospitalFilePath();
 
-            if (!File.Exists(file)) return null;
+                if (!File.Exists(file)) return null;
 
-            var connectionConfig = ConfigLoader.LoadConfig(file);
-            return connectionConfig.Host;
+                var connectionConfig = ConfigLoader.LoadConfig(file);
+                return connectionConfig.Host;
+            }
+            catch(FileNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, ex.FileName, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "에러 발생[GetCurrentHospitalCode]", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return "";
         }
     }
 }
