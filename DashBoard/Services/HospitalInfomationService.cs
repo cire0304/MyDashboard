@@ -11,8 +11,7 @@ namespace DashBoard.Services
 {
     public class HospitalInfomationService
     {
-        private readonly IConfiguration? _configuration;
-        private readonly FileSystemWatcher? _fileSystemWatcher;
+        private readonly IConfiguration? _configuration;       
         private readonly FilesWatcher _filesWatcher;
 
         private readonly string HOSPITAL_INFO_MAP = "HospitalInfoMap";
@@ -29,9 +28,9 @@ namespace DashBoard.Services
         {
             _configuration = configuration;
 
+            // 병원 로그인 정보 읽기
             try
             {
-                // 병원 정보 읽기
                 // TMax Connection config 파일 설정
                 HOSPTIAL_CONFIG_DIRECTORY = _configuration["HospitalInfomationService:ConnectionConfigDirectory"] ?? throw new Exception("ConnectionConfigDirectory not configured");
                 HOSPITAL_CONFIG_FILES = _configuration.GetSection("HospitalInfomationService:ConnectionConfigFiles").Get<List<string>>() ?? throw new Exception("ConnectionConfigFiles not configured");
@@ -60,6 +59,7 @@ namespace DashBoard.Services
                 MessageBox.Show(ex.Message, $"{this.GetType().Name}", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
+            // 병원 연결 정보 읽기
             try
             {
                 _filesWatcher = new FilesWatcher(HOSPTIAL_CONFIG_DIRECTORY, HOSPITAL_CONFIG_FILES);                
@@ -73,10 +73,7 @@ namespace DashBoard.Services
 
         private void OnHospitalInfoChanged()
         {
-
                 HospitalInfoChanged?.Invoke(ReadHospitalInfomation());
-
-
         }
 
         private string GetHospitalFilePath()

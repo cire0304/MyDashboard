@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Diagnostics;
 using System.IO;
+using DashBoard.Models;
 using DashBoard.Models.IntroLauncher;
 using Microsoft.Extensions.Configuration;
 
@@ -27,11 +28,28 @@ namespace DashBoard.Services.IntroLauncher
             });
         }
 
+        public void StartCommand(CommandItem commandItem)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = commandItem.FileName,
+                Arguments = commandItem.Arguments,
+                UseShellExecute = true
+            });
+        }
+
         public List<ProgramItem>? getProgramItemList()
         {
             return _configuration
                 .GetSection("LauncherProgramList")
                 .Get<List<ProgramItem>>();
+        }
+
+        public List<CommandItem>? getComandItemList()
+        {
+            return _configuration
+                .GetSection("CommandList")
+                .Get<List<CommandItem>>();
         }
     }
 }

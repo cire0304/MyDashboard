@@ -21,7 +21,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="150" />
+            <RowDefinition Height="250" />
         </Grid.RowDefinitions>
 
         <!--  ItemsControl을 WrapPanel로 배치하여 아이콘을 가로/세로로 나열  -->
@@ -51,7 +51,6 @@
                             CommandParameter="{Binding}"
                             Style="{StaticResource programButton}">
                             <StackPanel Opacity="1">
-
                                 <!--  아이콘 이미지  -->
                                 <Image
                                     Width="64"
@@ -71,7 +70,6 @@
                         </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-
             </ItemsControl>
         </Border>
 
@@ -84,7 +82,38 @@
                 </LinearGradientBrush>
             </Border.Background>
 
-            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" />
+            <ItemsControl
+                Margin="10,15"
+                IsTabStop="False"
+                ItemsSource="{Binding Commands}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!--  각 커맨드를 나타내는 버튼  -->
+                        <Button
+                            Margin="10"
+                            Padding="0"
+                            Command="{Binding DataContext.StartCommandCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                            CommandParameter="{Binding}"
+                            Style="{StaticResource programButton}">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="montserrat"
+                                FontSize="16"
+                                FontWeight="Medium"
+                                Foreground="Gray"
+                                Text="{Binding Name}" />
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+
+            </ItemsControl>
         </Border>
     </Grid>
 </UserControl>
