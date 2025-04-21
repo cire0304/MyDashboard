@@ -29,6 +29,7 @@
     <Color x:Key="Color8">#78A3FC</Color>
     <Color x:Key="Color9">#07F3C0</Color>
     <Color x:Key="Color10">#FBA1AA</Color>
+    <Color x:Key="Color11">#EEE5FF</Color>
     <SolidColorBrush x:Key="ColorBrush1" Color="#E285DE" />
     <SolidColorBrush x:Key="ColorBrush2" Color="#784DFD" />
     <SolidColorBrush x:Key="ColorBrush3" Color="#4ADAEC" />
@@ -39,6 +40,8 @@
     <SolidColorBrush x:Key="ColorBrush8" Color="#78A3FC" />
     <SolidColorBrush x:Key="ColorBrush9" Color="#07F3C0" />
     <SolidColorBrush x:Key="ColorBrush10" Color="#FBA1AA" />
+    <SolidColorBrush x:Key="ColorBrush11" Color="#EEE5FF" />
+    <Brush x:Key="Brush11">#EEE5FF</Brush>
 
     <!--  Font Colors  -->
     <Color x:Key="titleColor1">#E0E1F1</Color>

@@ -98,6 +98,7 @@
                         <Button
                             Margin="10"
                             Padding="0"
+                            Background="{StaticResource ColorBrush11}"
                             Command="{Binding DataContext.StartCommandCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                             CommandParameter="{Binding}"
                             Style="{StaticResource programButton}">

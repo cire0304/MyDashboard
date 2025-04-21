@@ -38,7 +38,7 @@
                 <Border
                     Margin="15"
                     Padding="5"
-                    Background="#EEE5FF"
+                    Background="{StaticResource Brush11}"
                     BorderBrush="#E0E0E0"
                     BorderThickness="2"
                     CornerRadius="12">
@@ -72,12 +72,12 @@
                     HorizontalAlignment="Stretch"
                     Orientation="Vertical">
                     <ctrl:WatermarkTextBox
-                        BoxBackground="#EEE5FF"
+                        BoxBackground="{StaticResource ColorBrush11}"
                         BoxBorderThickness="2"
                         Text="{Binding Id}"
                         Watermark="아이디를 입력해주세요" />
                     <ctrl:WatermarkTextBox
-                        BoxBackground="#EEE5FF"
+                        BoxBackground="{StaticResource ColorBrush11}"
                         BoxBorderThickness="2"
                         Text="{Binding Password}"
                         Watermark="비밀번호를 입력해주세요" />
