@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Runtime;
 using System.Windows.Interop;
+using DashBoard.ViewModels;
 
 namespace DashBoard.Views
 {
@@ -12,7 +13,16 @@ namespace DashBoard.Views
     {
         public MainView()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            this.Activated += MainView_Activated;
+        }
+
+        private void MainView_Activated(object? sender, EventArgs e)
+        {
+            if (HospitalInfoUI.DataContext is HospitalInfoViewModel ui)
+            {
+                ui.OnWindowActivated();
+            }
         }
 
         [DllImport("user32.dll")]

@@ -12,7 +12,6 @@ namespace DashBoard.Services
     public class HospitalInfomationService
     {
         private readonly IConfiguration? _configuration;       
-        private readonly FilesWatcher _filesWatcher;
 
         private readonly string HOSPITAL_INFO_MAP = "HospitalInfoMap";
         private readonly string HOSPITAL_INFO_FILE;
@@ -20,7 +19,6 @@ namespace DashBoard.Services
         private readonly List<string> HOSPITAL_CONFIG_FILES;
 
         private Dictionary<string, HospitalInfo>? _hospitalnfoMap;
-
 
         public event Action<HospitalInfo>? HospitalInfoChanged;
 
@@ -58,22 +56,7 @@ namespace DashBoard.Services
                 _hospitalnfoMap = new Dictionary<string, HospitalInfo>();
                 MessageBox.Show(ex.Message, $"{this.GetType().Name}", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
-            // 병원 연결 정보 읽기
-            try
-            {
-                _filesWatcher = new FilesWatcher(HOSPTIAL_CONFIG_DIRECTORY, HOSPITAL_CONFIG_FILES);                
-                _filesWatcher.OnEvent((s, e) => OnHospitalInfoChanged());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, $"{this.GetType().Name}", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void OnHospitalInfoChanged()
-        {
-                HospitalInfoChanged?.Invoke(ReadHospitalInfomation());
+                        
         }
 
         private string GetHospitalFilePath()
@@ -121,7 +104,6 @@ namespace DashBoard.Services
 
         public void UpdateHospitalInfo(HospitalInfo newHospitalName)
         {
-            // 예를 들어 현재 파일에서 읽은 병원 코드가
             string? currentCode = GetCurrentHospitalCode();
 
             if (string.IsNullOrWhiteSpace(currentCode)) return;

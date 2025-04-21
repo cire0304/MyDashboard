@@ -28,15 +28,12 @@ namespace DashBoard.ViewModels
 
             _hospitalInfo = _hospitalInfomationService.ReadHospitalInfomation();
             SyncrosizeHospitalUI();
+        }
 
-            _hospitalInfomationService.HospitalInfoChanged += content =>
-            {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    _hospitalInfo = content;
-                    SyncrosizeHospitalUI();
-                });
-            };
+        public void OnWindowActivated()
+        {
+            _hospitalInfo = _hospitalInfomationService.ReadHospitalInfomation();
+            SyncrosizeHospitalUI();
         }
 
         partial void OnNameChanged(string value)

@@ -2,11 +2,12 @@
 
 namespace DashBoard.Utils
 {
+    [Obsolete]
     public class FilesWatcher
     {
         private readonly List<FileSystemWatcher> _fileWatchers;
         private Timer? _debounceTimer;
-        private const int DebounceDelay = 1000; 
+        private const int DebounceDelay = 3000; 
         private FileSystemEventHandler? _handler;
 
 

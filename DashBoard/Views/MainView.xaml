@@ -49,7 +49,7 @@
             </Grid.ColumnDefinitions>
 
             <!--  Hospital Info  -->
-            <ui:HospitalInfoUI />
+            <ui:HospitalInfoUI x:Name="HospitalInfoUI" />
 
             <!--  Content Section  -->
             <Border
