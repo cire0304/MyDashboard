@@ -3,6 +3,8 @@ using System.Runtime.InteropServices;
 using System.Runtime;
 using System.Windows.Interop;
 using DashBoard.ViewModels;
+using System.Windows.Input;
+using DashBoard.Views.UI;
 
 namespace DashBoard.Views
 {
@@ -15,6 +17,28 @@ namespace DashBoard.Views
         {
             InitializeComponent();
             this.Activated += MainView_Activated;
+            this.Loaded += MainView_Loaded;
+        }
+
+        private void MainView_Loaded(object sender, RoutedEventArgs e)
+        {
+            var vm = ProgramLauncherUI.DataContext as ProgramLancherViewModel;
+            if (vm == null) return;
+
+            this.InputBindings.Clear();
+
+            for (int i = 0; i < vm.Programs.Count && i < 9; i++)
+            {
+                int index = i;
+                var keyBinding = new KeyBinding
+                {
+                    Modifiers = ModifierKeys.Alt,
+                    Key = Key.D1 - 1 + i,
+                    Command = vm.LaunchProgramByIndexCommand,
+                    CommandParameter = index
+                };
+                this.InputBindings.Add(keyBinding);
+            }
         }
 
         private void MainView_Activated(object? sender, EventArgs e)

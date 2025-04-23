@@ -33,9 +33,9 @@ namespace DashBoard.ViewModels
         }
 
         [RelayCommand]        
-        public void LaunchProgramByIndex(int index)
+        public void LaunchProgramByIndex(object indexObj)
         {
-            if (index >= 0 && index < Programs.Count)
+            if (indexObj is int index && index >= 0 && index < Programs.Count)
             {
                 StartProgramCommand.Execute(Programs[index]);
             }

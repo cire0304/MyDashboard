@@ -72,7 +72,7 @@
                     </Grid.RowDefinitions>
 
                     <!--  Content Section  -->
-                    <ui:ProgramLauncherUI Grid.Row="1" />
+                    <ui:ProgramLauncherUI x:Name="ProgramLauncherUI" Grid.Row="1" />
 
                     <StackPanel
                         x:Name="pnlControlBar"
